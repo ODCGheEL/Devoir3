@@ -6,6 +6,7 @@ import { uploadImage } from "../utils/Cloudinary";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { useBooksContext } from "../context/LocalStorageProvider";
+import axios from "axios";
 
 function AddBook() {
   const { addBook } = useBooksContext();
@@ -13,14 +14,27 @@ function AddBook() {
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState(null);
 
   async function handleSubmit(e) {
     e.preventDefault();
     let imageUrl;
     try {
-      imageUrl = await uploadImage(image, "devoir3");
-      addBook(title, description, imageUrl);
+      // imageUrl = await uploadImage(image, "devoir3");
+      // addBook(title, description, imageUrl);
+      const formData = new FormData();
+      formData.append("title", title);
+      formData.append("description", description);
+      formData.append("image", image);
+      const result = await axios.post(
+        "http://localhost:4000/api/books",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
       Swal.fire({
         title: "Nice!",
         text: "Book added successfully!",

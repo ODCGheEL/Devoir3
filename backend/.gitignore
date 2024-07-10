@@ -7,7 +7,6 @@ pnpm-debug.log*
 
 # Dependency directories
 node_modules/
-bower_components/
 
 # Build output
 dist/
@@ -20,6 +19,10 @@ docker-compose.*
 # dotenv environment variables file
 .env
 .env.*
+
+# Vite files
+.vite
+.vite_cache
 
 # Ignore the entire node_modules directory
 **/node_modules

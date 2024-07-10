@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import { IoBookmarks } from "react-icons/io5";
 import { deleteCloudinaryImage } from "../utils/Cloudinary";
+import axios from "axios";
 
 function CardComp({ id, title, description, image, imageDeleteToken }) {
   const { deleteBook, addFavorite } = useBooksContext();
@@ -24,13 +25,18 @@ function CardComp({ id, title, description, image, imageDeleteToken }) {
       confirmButtonText: "Yes, delete it!",
     });
     if (result.isConfirmed) {
-      await deleteCloudinaryImage(imageDeleteToken);
-      deleteBook(id);
-      Swal.fire("Deleted!", "Your book has been deleted.", "success").then(
-        () => {
-          return navigate(0);
-        }
+      // await deleteCloudinaryImage(imageDeleteToken);
+      // deleteBook(id);
+      const result = await axios.delete(
+        `http://localhost:4000/api/books/${id}`
       );
+      if (result.status === 200) {
+        Swal.fire("Deleted!", "Your book has been deleted.", "success").then(
+          () => {
+            return navigate(0);
+          }
+        );
+      }
     }
   }
 
