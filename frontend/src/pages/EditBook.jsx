@@ -6,6 +6,7 @@ import { useBooksContext } from "../context/LocalStorageProvider";
 import Swal from "sweetalert2";
 import { uploadImage } from "../utils/Cloudinary";
 import axios from "axios";
+import { BACKEND_URL } from "../utils/urls";
 
 // export default function EditBook() {
 //   const { getBookById, updateBook } = useBooksContext();
@@ -115,9 +116,7 @@ export default function EditBook() {
   const [image, setImage] = useState(null);
 
   async function fetchBook() {
-    const result = await axios.get(
-      `http://localhost:4000/api/books/${params.id}`
-    );
+    const result = await axios.get(`${BACKEND_URL}/${params.id}`);
     console.log(result.data);
     if (result.data) {
       setTitle(result.data.title);
@@ -146,15 +145,11 @@ export default function EditBook() {
       confirmButtonText: "Yes, update it!",
     });
     if (result.isConfirmed) {
-      const result = await axios.put(
-        `http://localhost:4000/api/books/${params.id}`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const result = await axios.put(`${BACKEND_URL}/${params.id}`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
       Swal.fire("Updated!", "Your book has been updated.", "success").then(
         () => {
           navigate("/");

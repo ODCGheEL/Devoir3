@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { useBooksContext } from "../context/LocalStorageProvider";
 import axios from "axios";
+import { BACKEND_URL } from "../utils/urls";
 
 function AddBook() {
   const { addBook } = useBooksContext();
@@ -27,7 +28,7 @@ function AddBook() {
       formData.append("description", description);
       formData.append("image", image);
       const result = await axios.post(
-        "http://localhost:4000/api/books",
+        `${BACKEND_URL}`,
         formData,
         {
           headers: {

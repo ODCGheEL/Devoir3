@@ -3,13 +3,14 @@ import { Books } from "../utils/Books";
 import CardComp from "./CardComp";
 import { useBooksContext } from "../context/LocalStorageProvider";
 import axios from "axios";
+import { BACKEND_URL } from "../utils/urls";
 
 export default function BooksList() {
   const { getBooks } = useBooksContext();
   const [books, setBooks] = useState([]);
 
   async function fetchBooks() {
-    const result = await axios.get("http://localhost:4000/api/books");
+    const result = await axios.get(`${BACKEND_URL}`);
     console.log(result.data);
     setBooks(result.data);
   }
