@@ -19,10 +19,10 @@ function App() {
       <div className="container">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="https://reactbookapp-frontend.onrender.com/add" element={<AddBook />} />
-          <Route path="https://reactbookapp-frontend.onrender.com/favorites" element={<Favorites />} />
-          <Route path="https://reactbookapp-frontend.onrender.com/search" element={<Search />} />
-          <Route path="https://reactbookapp-frontend.onrender.com/edit/:id" element={<EditBook />} />
+          <Route path="/add" element={<AddBook />} />
+          <Route path="/favorites" element={<Favorites />} />
+          <Route path="/search" element={<Search />} />
+          <Route path="/edit/:id" element={<EditBook />} />
         </Routes>
       </div>
       <div>
