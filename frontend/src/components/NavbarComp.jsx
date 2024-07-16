@@ -6,6 +6,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { BiSolidBookAdd } from "react-icons/bi";
 import { MdBookmarkAdd } from "react-icons/md";
 import { FaSearch } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function NavbarComp() {
   return (
@@ -20,18 +21,18 @@ function NavbarComp() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto fw-bold">
-            <Nav.Link href="/add">
+            <Link to="/add">
               <BiSolidBookAdd size={28} className="ms-2" />
               Add Book
-            </Nav.Link>
-            <Nav.Link href="/favorites">
+            </Link>
+            <Link to="/favorites">
               <MdBookmarkAdd size={28} className="ms-2" />
               Favorites
-            </Nav.Link>
-            <Nav.Link href="/search">
+            </Link>
+            <Link to="/search">
               <FaSearch size={24} className="ms-2" />
               Search
-            </Nav.Link>
+            </Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
